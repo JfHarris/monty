@@ -8,7 +8,7 @@
  * Return: void
  */
 
-void free_pint(unsigned int input, stack_t *sh)
+void free_push_err(unsigned int input, stack_t *sh)
 {
 	fprintf(stderr, "L%u: usage: push integer\n", input);
 	fclose(global.fd);
