@@ -21,10 +21,11 @@
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
+
 /**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
@@ -35,8 +36,8 @@ typedef struct stack_s
  */
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
 /**
@@ -57,8 +58,10 @@ typedef struct var_s
 extern var_t global;
 
 char *find_opcode(char **string);
+stack_t *new_node(char *opcode, stack_t **sh, unsigned int input);
+FILE *check_file(int argc, char *argv[]);
 void nop_comm(stack_t **sh, unsigned int input);
-void free_pint(unsigned int input, stack_t *sh);
+void free_push_err(unsigned int input, stack_t *sh);
 void free_mal_malloc(stack_t *sh);
 void free_all(stack_t *sh);
 void free_gen_error(stack_t *sh);
@@ -67,5 +70,8 @@ void pint_comm(stack_t **sh, unsigned int input);
 void pall_comm(stack_t **sh, unsigned int input);
 void pop_comm(stack_t **sh, unsigned int input);
 void swap_comm(stack_t **sh, unsigned int input);
+void add_comm(stack_t **sh, unsigned int input);
+int main_monty(int argc, char *argv[]);
+
 
 #endif
