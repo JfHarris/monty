@@ -62,8 +62,10 @@ void free_pint(unsigned int input, stack_t *sh);
 void free_mal_malloc(stack_t *sh);
 void free_all(stack_t *sh);
 void free_gen_error(stack_t *sh);
-
-
-
+stack_t *comm_find(char *opcode, stack_t **sh, unsigned int input);
+void pint_comm(stack_t **sh, unsigned int input);
+void pall_comm(stack_t **sh, unsigned int input);
+void pop_comm(stack_t **sh, unsigned int input);
+void swap_comm(stack_t **sh, unsigned int input);
 
 #endif
