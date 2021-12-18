@@ -57,7 +57,7 @@ typedef struct var_s
 
 extern var_t global;
 
-char *find_opcode(char **string);
+char *find_opcode(char **st);
 stack_t *new_node(char *opcode, stack_t **stack, unsigned int line_number);
 FILE *check_file(int argc, char *argv[]);
 void nop_comm(stack_t **stack, unsigned int line_number);

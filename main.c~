@@ -11,7 +11,7 @@ var_t global;
  * Return: 0 on success.
  */
 
-int main(int argc, char *argv[])
+int main_monty(int argc, char *argv[])
 {
 	char *string = NULL;
 	stack_t *stack = NULL;
@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
 		global.opcode = find_opcode(&string);
 		if (global.opcode == NULL)
 			free_mal_malloc(stack);
-		if (strncmp(global.opcode, "push ", 5) == 0)
+		if (strncmp(global.opcode, "push", 5) == 0)
 		{
 			stack = new_node(global.opcode, &stack, line_number);
 			if (stack == NULL)
