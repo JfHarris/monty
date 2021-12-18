@@ -2,28 +2,28 @@
 
 /**
  * pop_comm - removes top of stack
- *@sh: stack head
- *@input: input
+ *@stack: stack head
+ *@line_number: input
  *
  * Return: void.
  */
 
-void pop_comm(stack_t **sh, unsigned int input)
+void pop_comm(stack_t **stack, unsigned int line_number)
 {
-	stack_t *hold = (*sh);
+	stack_t *hold = (*stack);
 
-	if (*sh)
+	if (*stack)
 	{
-		(*sh) = (*sh)->next;
+		(*stack) = (*stack)->next;
 		free(hold);
-		if (*sh)
+		if (*stack)
 		{
-			(*sh)->prev = NULL;
+			(*stack)->prev = NULL;
 		}
 	}
 	else
 	{
-		fprintf(stderr, "L%u: can't pop an empty stack\n", input);
+		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
 		fclose(global.fd);
 		free(global.opcode);
 		exit(EXIT_FAILURE);
