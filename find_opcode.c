@@ -31,7 +31,7 @@ char *find_opcode(char **string)
 		opcode[y + 1] = '\0';
 		return (opcode);
 	}
-	for (y = 0 ; END_COMM ; x++, y++)
+	for (y = 0 ; COMM_END ; x++, y++)
 		opcode[y] = (*string)[x];
 	if ((*string)[x] == '\0')
 		end = 0;
@@ -47,7 +47,7 @@ char *find_opcode(char **string)
 			opcode[y] = '\0';
 			return (opcode);
 		}
-		for (y += 1 ; END_COMM ; x++, y++)
+		for (y += 1 ; COMM_END ; x++, y++)
 			opcode[y] = (*string)[x];
 		opcode[y] = '\0';
 	}
