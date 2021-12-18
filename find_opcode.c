@@ -1,56 +1,53 @@
 #include "monty.h"
-#define COMM_END ((*string)[x] != ' ' && (*string)[x] != '\n' && (*string)[x] != '\0')
+#define COMM_END ((*st)[x] != ' ' && (*st)[x] != '\n' && (*st)[x] != '\0')
 
 /**
  * find_opcode - finds opcode
- *@string: input string = command to execute
+ *@st: input string = command to execute
  *
  * Return: string
  */
 
-char *find_opcode(char **string)
+char *find_opcode(char **st)
 {
-	int x = 0, y = 0;
-	int end = 1;
+	int x = 0, y = 0, end = 1;
 	char *opcode;
 
-	opcode = malloc(sizeof(char) * (strlen(*string) + 1));
-
+	opcode = malloc(sizeof(char) * (strlen(*st) + 1));
 	if (opcode == NULL)
 	{
-		free(*string), *string = NULL;
+		free(*st), *st = NULL;
 		return (NULL);
 	}
-
-	while ((*string)[x] == ' ')
+	while ((*st)[x] == ' ')
 		x++;
-	if ((*string)[x] == '\0' || (*string)[x] == '\n')
+	if ((*st)[x] == '\0' || (*st)[x] == '\n')
 	{
-		free(*string), *string = NULL;
+		free(*st), *st = NULL;
 		opcode[y] = '\n';
 		opcode[y + 1] = '\0';
 		return (opcode);
 	}
 	for (y = 0 ; COMM_END ; x++, y++)
-		opcode[y] = (*string)[x];
-	if ((*string)[x] == '\0')
+		opcode[y] = (*st)[x];
+	if ((*st)[x] == '\0')
 		end = 0;
 	opcode[y] = '\0';
 	if (strcmp(opcode, "push") == 0 && end)
 	{
 		opcode[y] = ' ';
-		while ((*string)[x] == ' ')
+		while ((*st)[x] == ' ')
 			x++;
-		if ((*string)[x] == '\0' || (*string)[x] == '\n')
+		if ((*st)[x] == '\0' || (*st)[x] == '\n')
 		{
-			free(*string), *string = NULL;
+			free(*st), *st = NULL;
 			opcode[y] = '\0';
 			return (opcode);
 		}
 		for (y += 1 ; COMM_END ; x++, y++)
-			opcode[y] = (*string)[x];
+			opcode[y] = (*st)[x];
 		opcode[y] = '\0';
 	}
-	free(*string), *string = NULL;
+	free(*st), *st = NULL;
 	return (opcode);
 }
