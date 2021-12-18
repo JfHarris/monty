@@ -2,17 +2,17 @@
 
 /**
  * pall_comm - print all
- *@sh: stack head
- *@input: input
+ *@stack: stack head
+ *@line_number: input
  *
  * Return: void.
  */
 
-void pall_comm(stack_t **sh, unsigned int input)
+void pall_comm(stack_t **stack, unsigned int line_number)
 {
-	stack_t *hold = (*sh);
+	stack_t *hold = (*stack);
 
-	void(input);
+	(void)line_number;
 
 	while (hold)
 	{
