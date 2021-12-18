@@ -1,3 +1,4 @@
+#define _POSIX_SOURCE
 #include "monty.h"
 
 /**
@@ -35,5 +36,5 @@ FILE *check_file(int argc, char *argv[])
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-	return (global.fd)
+	return (global.fd);
 }
