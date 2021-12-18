@@ -3,38 +3,37 @@
 /**
  * comm_find - finds command
  *@opcode: opcode
- *@sh: stack head
- *@input: input
+ *@stack: stack head
+ *@line_number: input
  *
  * Return: stack head.
  */
 
-stack_t *comm_find(char *opcode, stack_t **sh, unsigned int input)
+stack_t *comm_find(char *opcode, stack_t **stack, unsigned int line_number)
 {
 	int x;
-	var_t comms[] = {
+	instruction_t instructions[] = {
 		{"pint", pint_comm}, {"pall", pall_comm},
 		{"pop", pop_comm}, {"nop", nop_comm},
 		{"add", add_comm}, {"swap", swap_comm},
-		{NULL, NULL}
-	};
+		{NULL, NULL} };
 
 	if (opcode[0] == '#')
 	{
-		return (*sh);
+		return (*stack);
 	}
-	for (x = 0 ; comms[x].opcode != NULL ; x++)
+	for (x = 0 ; instructions[x].opcode != NULL ; x++)
 	{
-		if (strcmp(opcode, comms[x].opcode) == 0)
+		if (strcmp(opcode, instructions[x].opcode) == 0)
 		{
 			break;
 		}
 	}
-	if (comms[x].opcode == NULL)
+	if (instructions[x].opcode == NULL)
 	{
-		fprintf(stderr, "L%u: unknown instruction %s\n", input, opcode);
-		free_gen_error(*sh);
+		fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
+		free_gen_error(*stack);
 	}
-	comms[x].f(sh, input);
-	return (*sh);
+	instructions[x].f(stack, line_number);
+	return (*stack);
 }
