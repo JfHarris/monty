@@ -2,25 +2,25 @@
 
 /**
  * swap_comm - swaps top two elements of stack
- *@sh: stack head
- *@input: input
+ *@stack: stack head
+ *@line_number: input
  *
  * Return: void.
  */
 
-void swap_comm(stack_t **sh, unsigned int input)
+void swap_comm(stack_t **stack, unsigned int line_number)
 {
 	int hold;
 
-	if ((*sh) == NULL || (*sh)->next == NULL)
+	if ((*stack) == NULL || (*stack)->next == NULL)
 	{
-		fprintf(stderr, "L%u: can't swap, stack too short\n", input);
+		fprintf(stderr, "L%u: can't swap, stack too short\n", line_number);
 		fclose(global.fd);
 		free(global.opcode);
-		free_all(*sh);
+		free_all(*stack);
 		exit(EXIT_FAILURE);
 	}
-	hold = (*sh)->n;
-	(*sh)->n = (*sh)->next->n;
-	(*sh)->next->n = hold;
+	hold = (*stack)->n;
+	(*stack)->n = (*stack)->next->n;
+	(*stack)->next->n = hold;
 }
