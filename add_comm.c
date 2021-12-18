@@ -2,27 +2,27 @@
 
 /**
  * add_comm - adds ints on stack
- *@sh: stack head
- *@input: input
+ *@stack: stack head
+ *@line_number: input
  *
  * Return: void.
  */
 
-void add_comm(stack_t **sh, unsigned int input)
+void add_comm(stack_t **stack, unsigned int line_number)
 {
 	stack_t *hold;
 
-	if ((*sh) == NULL || (*sh)->next == NULL)
+	if ((*stack) == NULL || (*stack)->next == NULL)
 	{
-		fprintf(stderr, "L%u: can't add, stack too short\n", input);
+		fprintf(stderr, "L%u: can't add, stack too short\n", line_number);
 		fclose(global.fd);
 		free(global.opcode);
-		free_all(*sh);
+		free_all(*stack);
 		exit(EXIT_FAILURE);
 	}
-	hold = (*sh);
-	(*sh) = (*sh)->next;
-	(*sh)->n += (*sh)->prev->n;
-	(*sh)->prev = NULL;
+	hold = (*stack);
+	(*stack) = (*stack)->next;
+	(*stack)->n += (*stack)->prev->n;
+	(*stack)->prev = NULL;
 	free(hold);
 }
