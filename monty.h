@@ -8,7 +8,7 @@
 #include <string.h>
 #include <fcntl.h>
 #include <string.h>
-
+#include <ctype.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -58,20 +58,20 @@ typedef struct var_s
 extern var_t global;
 
 char *find_opcode(char **string);
-stack_t *new_node(char *opcode, stack_t **sh, unsigned int input);
+stack_t *new_node(char *opcode, stack_t **stack, unsigned int line_number);
 FILE *check_file(int argc, char *argv[]);
-void nop_comm(stack_t **sh, unsigned int input);
-void free_push_err(unsigned int input, stack_t *sh);
-void free_mal_malloc(stack_t *sh);
-void free_all(stack_t *sh);
-void free_gen_error(stack_t *sh);
-stack_t *comm_find(char *opcode, stack_t **sh, unsigned int input);
-void pint_comm(stack_t **sh, unsigned int input);
-void pall_comm(stack_t **sh, unsigned int input);
-void pop_comm(stack_t **sh, unsigned int input);
-void swap_comm(stack_t **sh, unsigned int input);
-void add_comm(stack_t **sh, unsigned int input);
-int main_monty(int argc, char *argv[]);
+void nop_comm(stack_t **stack, unsigned int line_number);
+void free_push_err(unsigned int line_number, stack_t *stack);
+void free_mal_malloc(stack_t *stack);
+void free_all(stack_t *stack);
+void free_gen_error(stack_t *stack);
+stack_t *comm_find(char *opcode, stack_t **stack, unsigned int line_number);
+void pint_comm(stack_t **stack, unsigned int line_number);
+void pall_comm(stack_t **stack, unsigned int line_number);
+void pop_comm(stack_t **stack, unsigned int line_number);
+void swap_comm(stack_t **stack, unsigned int line_number);
+void add_comm(stack_t **stack, unsigned int line_number);
+int main(int argc, char *argv[]);
 
 
 #endif
