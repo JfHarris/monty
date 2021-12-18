@@ -2,15 +2,16 @@
 
 /**
  * nop_comm - nop command
- *@sh: stack head
- *@input: where commands are entered
+ *@stack: stack head
+ *@line_number: where commands are entered
  *
  * Return: void.
  */
 
-void nop_comm(stack_t **sh, unsigned int input)
+void nop_comm(stack_t **stack, unsigned int line_number)
 {
-	void s, input;
+	(void)stack;
+	(void)line_number;
 
 	free(global.opcode);
 	global.opcode = malloc(sizeof(char) * 2);
@@ -19,7 +20,7 @@ void nop_comm(stack_t **sh, unsigned int input)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		fclose(global.fd);
-		free_all(*sh);
+		free_all(*stack);
 		exit(EXIT_FAILURE);
 	}
 	global.opcode[0] = '\n';
